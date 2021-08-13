@@ -36,7 +36,7 @@ export default {
     enter (el, done) { // 动画过程中
       // offsetWidth使浏览器重绘
       console.log(el.offsetWidth)
-      el.style.transform = 'translate(100px, 450px)'
+      el.style.transform = 'translate(120px, 450px)'
       el.style.transition = 'all 0.5s'
       done() // done()是对afterEnter的引用
     },
