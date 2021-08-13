@@ -1,32 +1,48 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="cart">
+      <input type="button" value="加入购物车" @click="flag = !flag"/>
+      <transition
+        @before-enter = "beforeEnter"
+        @enter = "enter"
+        @after-enter ="afterEnter">
+        <div class="circle" v-if="flag" ></div>
+      </transition>
     </div>
-    <router-view/>
   </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  .circle{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: red;
+  }
+</style>
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+export default {
+  data () {
+    return {
+      flag: false
+    }
+  },
+  methods: {
+    beforeEnter (el) {
+      el.style.transform = 'translate(0, 0)'
+    },
+    enter (el, done) {
+      // offsetWidth使浏览器重绘
+      console.log(el.offsetWidth)
+      el.style.transform = 'translate(100px, 450px)'
+      el.style.transition = 'all 0.5s'
+      done() // done()是对afterEnter的引用
+    },
+    afterEnter (el) {
+      // 动画结束，隐藏小球
+      this.flag = false
     }
   }
 }
-</style>
+</script>
