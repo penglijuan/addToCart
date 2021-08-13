@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="cart">
-      <input type="button" value="加入购物车" @click="flag = !flag"/>
+      <input type="button" value="点击加入购物车" @click="flag = !flag"/>
       <transition
         @before-enter = "beforeEnter"
         @enter = "enter"
