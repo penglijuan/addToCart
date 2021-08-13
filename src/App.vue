@@ -29,17 +29,18 @@ export default {
     }
   },
   methods: {
-    beforeEnter (el) {
+    // 动画的三个钩子函数
+    beforeEnter (el) { // 进入动画之前
       el.style.transform = 'translate(0, 0)'
     },
-    enter (el, done) {
+    enter (el, done) { // 动画过程中
       // offsetWidth使浏览器重绘
       console.log(el.offsetWidth)
       el.style.transform = 'translate(100px, 450px)'
       el.style.transition = 'all 0.5s'
       done() // done()是对afterEnter的引用
     },
-    afterEnter (el) {
+    afterEnter (el) { // 动画结束之后
       // 动画结束，隐藏小球
       this.flag = false
     }
