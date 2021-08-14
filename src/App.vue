@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="cart">
-      <input type="button" value="点击加入购物车" @click="flag = !flag"/>
+      <input type="button" value="加入购物车" @click="flag = !flag"/>
       <transition
         @before-enter = "beforeEnter"
         @enter = "enter"
@@ -33,7 +33,8 @@ export default {
     beforeEnter (el) { // 进入动画之前
       el.style.transform = 'translate(0, 0)'
     },
-    enter (el, done) { // 动画过程中
+    enter (el, done) {
+      // 动画过程中
       // offsetWidth使浏览器重绘
       console.log(el.offsetWidth)
       el.style.transform = 'translate(120px, 450px)'
